@@ -73,7 +73,7 @@ plot_usmap("states")  +
   scale_size_continuous(name = "Kg") +
   ggtitle( "Restaurantes")
 
-### BUSCAR CORRELACIÓN ENTRE POBLACIÓN Y CANTIDAD DE RESTAURANTES
+### BUSCAR CORRELACIÃ“N ENTRE POBLACIÃ“N Y CANTIDAD DE RESTAURANTES
 
 restaurants$province[restaurants$province == "AL"] <- "Alabama"
 restaurants$province[restaurants$province == "AK"] <- "Alaska"
@@ -335,6 +335,15 @@ WyomingRest <- filter(restaurants,restaurants$province == "Wyoming")
 # Yukon (YT)
 
 YukonRest <- filter(restaurants,restaurants$province == "Yukon")
+
+restaurante_states<-c(nrow(AlabamaRest),nrow(AlaskaRest),nrow(AlbertaRest), nrow(ArizonaRest),nrow(ArkansasRest),nrow(BritishColumbiaRest), nrow(CaliforniaRest), nrow(ColoradoaRest),nrow(ConnecticutRest),nrow(DelawareRest),nrow(DistColumbiaRest),nrow(FloridaRest),nrow(GeorgiaRest),nrow(HawaiiRest),nrow(IdahoRest),nrow(IllinoisRest),nrow(IndianaRest),nrow(IowaRest),nrow(KansasRest), 
+nrow(KentuckyRest),nrow(LouisianaRest),nrow(MaineRest),nrow(ManitobaRest),nrow(MarylandRest),nrow(MassachusettsRest),nrow(MichiganRest),nrow(MinnesotaRest),
+nrow(MississippiRest),nrow(MissouriRest),nrow(MontanaRest),nrow(NebraskaRest),nrow(NevadaRest),nrow(NewBrunswickRest),nrow(NewHampshireRest),
+nrow(NewJerseyRest),nrow(NewMexicoRest),nrow(NewYorkRest),nrow(NewFoundlandRest),nrow(NorthCarolinaRest),nrow(NorthDakotaRest),
+nrow(NorthwestTerritoriesRest),nrow(NovaScotiaRest),nrow(OhioRest),nrow(OklahomaRest),nrow(OntarioRest), 
+nrow(OregonRest),nrow(PennsylvaniaRest),nrow(PriceEdwardIslandRest),nrow(QuebecRest),nrow(RhodeIslandRest),
+nrow(SaskatchewanRest),nrow(SouthCarolinaRest),nrow(SouthDakotaRest),nrow(TennesseeRest),nrow(TexasRest),nrow(UtahRest), 
+nrow(VermontRest),nrow(VirginiaRest),nrow(WashingtonRest),nrow(WestVirginiaRest),nrow(WisconsinRest),nrow(WyomingRest),nrow(YukonRest))
 
  
 
