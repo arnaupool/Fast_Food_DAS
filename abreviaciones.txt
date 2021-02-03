@@ -1,0 +1,128 @@
+restaurants$province[restaurants$province == "AL"] <- "Alabama"
+restaurants$province[restaurants$province == "AK"] <- "Alaska"
+restaurants$province[restaurants$province == "AB"] <- "Alberta"
+restaurants$province[restaurants$province == "AZ"] <- "Arizona"
+restaurants$province[restaurants$province == "AR"] <- "Arkansas"
+restaurants$province[restaurants$province == "BC"] <- "British Columbia"
+restaurants$province[restaurants$province == "CA"] <- "California"
+restaurants$province[restaurants$province == "CO"] <- "Colorado"
+restaurants$province[restaurants$province == "CT"] <- "Connecticut"
+restaurants$province[restaurants$province == "DE"] <- "Delaware"
+restaurants$province[restaurants$province == "DC"] <- "Dist of Columbia"
+restaurants$province[restaurants$province == "FL"] <- "Florida"
+restaurants$province[restaurants$province == "GA"] <- "Georgia"
+restaurants$province[restaurants$province == "HI"] <- "Hawaii"
+restaurants$province[restaurants$province == "ID"] <- "Idaho"
+restaurants$province[restaurants$province == "IL"] <- "Illinois"
+restaurants$province[restaurants$province == "IN"] <- "Indiana"
+restaurants$province[restaurants$province == "KS"] <- "Kansas"
+restaurants$province[restaurants$province == "KY"] <- "Kentucky"
+restaurants$province[restaurants$province == "LA"] <- "Louisiana"
+restaurants$province[restaurants$province == "ME"] <- "Maine"
+restaurants$province[restaurants$province == "MB"] <- "Manitoba"
+restaurants$province[restaurants$province == "MD"] <- "Maryland"
+restaurants$province[restaurants$province == "MA"] <- "Massachusetts"
+restaurants$province[restaurants$province == "MI"] <- "Michigan"
+restaurants$province[restaurants$province == "MN"] <- "Minnesota"
+restaurants$province[restaurants$province == "MS"] <- "Mississippi"
+restaurants$province[restaurants$province == "MO"] <- "Missouri"
+restaurants$province[restaurants$province == "MT"] <- "Montana"
+restaurants$province[restaurants$province == "NE"] <- "Nebraska"
+restaurants$province[restaurants$province == "NV"] <- "Nevada"
+restaurants$province[restaurants$province == "NB"] <- "New Brunswick"
+restaurants$province[restaurants$province == "NH"] <- "New Hampshire"
+restaurants$province[restaurants$province == "NJ"] <- "New Jersey"
+restaurants$province[restaurants$province == "NM"] <- "New Mexico"
+restaurants$province[restaurants$province == "NY"] <- "New York"
+restaurants$province[restaurants$province == "NL"] <- "NewFoundland/Labrador"
+restaurants$province[restaurants$province == "NC"] <- "North Carolina"
+restaurants$province[restaurants$province == "ND"] <- "North Dakota"
+restaurants$province[restaurants$province == "NT"] <- "Northwest Territories"
+restaurants$province[restaurants$province == "NS"] <- "Nova Scotia"
+restaurants$province[restaurants$province == "OH"] <- "Ohio"
+restaurants$province[restaurants$province == "OK"] <- "Oklahoma"
+restaurants$province[restaurants$province == "ON"] <- "Ontario"
+restaurants$province[restaurants$province == "OR"] <- "Oregon"
+restaurants$province[restaurants$province == "PA"] <- "Pennsylvania"
+restaurants$province[restaurants$province == "PE"] <- "Price Edward Island"
+restaurants$province[restaurants$province == "QC"] <- "Quebec"
+restaurants$province[restaurants$province == "RI"] <- "Rhode Island"
+restaurants$province[restaurants$province == "SK"] <- "Saskatchewan"
+restaurants$province[restaurants$province == "SC"] <- "South Carolina"
+restaurants$province[restaurants$province == "SD"] <- "South Dakota"
+restaurants$province[restaurants$province == "TN"] <- "Tennessee"
+restaurants$province[restaurants$province == "TX"] <- "Texas"
+restaurants$province[restaurants$province == "UT"] <- "Utah"
+restaurants$province[restaurants$province == "VT"] <- "Vermont"
+restaurants$province[restaurants$province == "VA"] <- "Virginia"
+restaurants$province[restaurants$province == "WA"] <- "Washington"
+restaurants$province[restaurants$province == "WV"] <- "West Virginia"
+restaurants$province[restaurants$province == "WI"] <- "Wisconsin"
+restaurants$province[restaurants$province == "WY"] <- "Wyoming"
+restaurants$province[restaurants$province == "YT"] <- "Yukon"
+
+write.csv(restaurants, file="A:/Escritorio/DAS_Proyecto/restaurants.csv")
+
+Alabama AL
+Alaska AK
+Alberta AB
+Arizona AZ
+Arkansas AR
+British Columbia BC
+California CA
+Colorado CO
+Connecticut CT
+Delaware DE
+Dist of Columbia DC
+Florida FL
+Georgia GA
+Hawaii HI
+Idaho ID
+Illinois IL
+Indiana IN
+Iowa IA
+Kansas KS
+Kentucky KY
+Louisiana LA
+Maine ME
+Manitoba MB
+Maryland MD
+Massachusetts MA
+Michigan MI
+Minnesota MN
+Mississippi MS
+Missouri MO
+Montana MT
+Nebraska NE
+Nevada NV
+New Brunswick NB
+New Hampshire NH
+New Jersey NJ
+New Mexico NM
+New York NY
+NewFoundland/Labrador NL
+North Carolina NC
+North Dakota ND
+Northwest Territories NT
+Nova Scotia NS
+Ohio OH
+Oklahoma OK
+Ontario ON
+Oregon OR
+Pennsylvania PA
+Price Edward Island PE
+Quebec QC
+Rhode Island RI
+Saskatchewan SK
+South Carolina SC
+South Dakota SD
+Tennessee TN
+Texas TX
+Utah UT
+Vermont VT
+Virginia VA
+Washington WA
+West Virginia WV
+Wisconsin WI
+Wyoming WY
+Yukon YT
