@@ -323,37 +323,60 @@ restaurants$primaryCategories <- factor(restaurants$primaryCategories)
 population <-read.csv(file.choose(),	 header=T,	 sep=',')
 head(population)
 
-#### COMBINAR DATOS DE POBLACIÓN CON CANTIDAD DE RESTAURANTES
+#### COMBINAR DATOS 
 population <- cbind(population,nRestaurants)
+
+sapply(population, class)
+head(population)
+# STATE POPESTIMATE2019      lat       long nRestaurants
+# 1    Alabama         4903185 32.37772  -86.30057          635
+# 2     Alaska          731545 58.30160 -134.42021           64
+# 3    Arizona         7278717 33.44814 -112.09696          186
+# 4   Arkansas         3017804 34.74661  -92.28899          124
+# 5 California        39512223 38.57667 -121.49363          727
+# 6   Colorado         5758736 39.73923 -104.98486          154
+
+population$nRestaurants <- as.numeric(population$nRestaurants)
+
+## CORELACIÓN ENTRE CANTIDAD DE POBLACIÓN Y Nº RESTAURANTES
+cor(population$POPESTIMATE2019, population$nRestaurants)
+# 0.648239
 
 ###### MAPA DE TODO USA ############################
 
-mapa_usa<-c(map_data('usa'), map_data(''), mapd_data(''))
+mapa_usa<-map_data('world', region = c("Usa", "Alaska", "Hawaii"), xlim =c(-200,-50))
 
 mapa_usa %>%
   ggplot() +
   geom_polygon(aes( x= long, y = lat, group = group),
-               fill = "blue",
-               color = "white") +
+               fill = "lightgray",
+               color = "white",
+               size = 0.01) +
   geom_point(data= restaurants, 
              aes(x=longitude, y = latitude), 
-             stroke = F) +   ##stroke to modify the  width of the border
-  scale_size_continuous(name = "Kg") +
-  ggtitle( "Restaurantes")
-
-
-theme_map()
+             stroke = F, 
+             alpha =0.2, 
+             color = "blue")+ 
+  ggtitle( "Restaurantes de comida rápida en EEUU")
 
 
 ################## MAPA POR ESTADO #######################
+vignette(package = "usmap")
+vignette("introduction", package = "usmap")
 vignette("mapping", package = "usmap")
+vignette("advanced-mapping", package = "usmap")
 
-state_map <- us_map(regions = "states")
-plot_usmap("states")  +
-  geom_point(data= restaurants, 
-             aes(x=longitude, y = latitude), 
-             stroke = F) +   ##stroke to modify the  width of the border
-  scale_size_continuous(name = "Kg") +
-  ggtitle( "Restaurantes")
+##state_map <- us_map(regions = "states")
+
+
+### cambiar orden columnas
+population_usa<- usmap_transform(population)
+
+plot_usmap("states") +
+geom_point(data = population,
+             aes(x = long , y = lat, size = nRestaurants),
+             color = "purple", alpha = 0.5) +
+  scale_size_continuous(range = c(0, 1000),
+                        label = scales::comma)
 
 ### BUSCAR CORRELACIÓN ENTRE POBLACIÓN Y CANTIDAD DE RESTAURANTES
