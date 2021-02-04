@@ -9,7 +9,7 @@ install.package("devtools", dependencies=TRUE)
 sapply(.libs,require, character.only=TRUE)
 
 
-#### ARXIU Datafiniti_Fast_Food_Restaurants_May19
+#### ARCHIVO Datafiniti_Fast_Food_Restaurants_May19
 
 restaurants <-read.csv(file.choose(),	 header=T,	 sep=',')
 head(restaurants)
@@ -25,62 +25,68 @@ colnames(restaurants)
 # "longitude"         "name"              "postalCode"        "province"
 
 
-### CONVERTIR A FACTOR  PROVINCE, CATEGORIES 
+#### REFACTORIZACIÓN DE DATOS para juntar con los datos de población
 
-sapply(restaurants, class)
+restaurants$province[restaurants$province == "AL"] <- "Alabama"
+restaurants$province[restaurants$province == "AK"] <- "Alaska"
+restaurants$province[restaurants$province == "AZ"] <- "Arizona"
+restaurants$province[restaurants$province == "AR"] <- "Arkansas"
+restaurants$province[restaurants$province == "CA"] <- "California"
+restaurants$province[restaurants$province == "CO"] <- "Colorado"
+restaurants$province[restaurants$province == "CT"] <- "Connecticut"
+restaurants$province[restaurants$province == "DE"] <- "Delaware"
+restaurants$province[restaurants$province == "DC"] <- "District of Columbia"
+restaurants$province[restaurants$province == "FL"] <- "Florida"
+restaurants$province[restaurants$province == "GA"] <- "Georgia"
+restaurants$province[restaurants$province == "HI"] <- "Hawaii"
+restaurants$province[restaurants$province == "ID"] <- "Idaho"
+restaurants$province[restaurants$province == "IL"] <- "Illinois"
+restaurants$province[restaurants$province == "IN"] <- "Indiana"
+restaurants$province[restaurants$province == "IA"] <- "Iowa"
+restaurants$province[restaurants$province == "KS"] <- "Kansas"
+restaurants$province[restaurants$province == "KY"] <- "Kentucky"
+restaurants$province[restaurants$province == "LA"] <- "Louisiana"
+restaurants$province[restaurants$province == "ME"] <- "Maine"
+restaurants$province[restaurants$province == "MD"] <- "Maryland"
+restaurants$province[restaurants$province == "MA"] <- "Massachusetts"
+restaurants$province[restaurants$province == "MI"] <- "Michigan"
+restaurants$province[restaurants$province == "MN"] <- "Minnesota"
+restaurants$province[restaurants$province == "MS"] <- "Mississippi"
+restaurants$province[restaurants$province == "MO"] <- "Missouri"
+restaurants$province[restaurants$province == "MT"] <- "Montana"
+restaurants$province[restaurants$province == "NE"] <- "Nebraska"
+restaurants$province[restaurants$province == "NV"] <- "Nevada"
+restaurants$province[restaurants$province == "NH"] <- "New Hampshire"
+restaurants$province[restaurants$province == "NJ"] <- "New Jersey"
+restaurants$province[restaurants$province == "NM"] <- "New Mexico"
+restaurants$province[restaurants$province == "NY"] <- "New York"
+restaurants$province[restaurants$province == "NC"] <- "North Carolina"
+restaurants$province[restaurants$province == "ND"] <- "North Dakota"
+restaurants$province[restaurants$province == "OH"] <- "Ohio"
+restaurants$province[restaurants$province == "OK"] <- "Oklahoma"
+restaurants$province[restaurants$province == "OR"] <- "Oregon"
+restaurants$province[restaurants$province == "PA"] <- "Pennsylvania"
+restaurants$province[restaurants$province == "RI"] <- "Rhode Island"
+restaurants$province[restaurants$province == "SC"] <- "South Carolina"
+restaurants$province[restaurants$province == "SD"] <- "South Dakota"
+restaurants$province[restaurants$province == "TN"] <- "Tennessee"
+restaurants$province[restaurants$province == "TX"] <- "Texas"
+restaurants$province[restaurants$province == "UT"] <- "Utah"
+restaurants$province[restaurants$province == "VT"] <- "Vermont"
+restaurants$province[restaurants$province == "VA"] <- "Virginia"
+restaurants$province[restaurants$province == "WA"] <- "Washington"
+restaurants$province[restaurants$province == "WV"] <- "West Virginia"
+restaurants$province[restaurants$province == "WI"] <- "Wisconsin"
+restaurants$province[restaurants$province == "WY"] <- "Wyoming"
 
-restaurants$city <- factor(restaurants$city)
-restaurants$province <- factor(restaurants$province)
-restaurants$categories <- factor(restaurants$categories)
-restaurants$primaryCategories <- factor(restaurants$primaryCategories)
+head(restaurants,20)
+
 
 ### NO HI HAN DUPLICATS
 prueba <- restaurants[!duplicated(restaurants),]
 head(prueba)
 
 ### NO HI HA NA
-
-
-
-###### MAPA DE TODO USA ############################
-
-mapa_usa<-c(map_data('usa'), map_data(''), mapd_data(''))
-
-mapa_usa %>%
-  ggplot() +
-  geom_polygon(aes( x= long, y = lat, group = group),
-               fill = "blue",
-               color = "white") +
-geom_point(data= restaurants, 
-           aes(x=longitude, y = latitude), 
-           stroke = F) +   ##stroke to modify the  width of the border
-  scale_size_continuous(name = "Kg") +
-  ggtitle( "Restaurantes")
-
-
-theme_map()
-
-
-
-################## MAPA POR ESTADO #######################
-vignette("mapping", package = "usmap")
-
-state_map <- us_map(regions = "states")
-plot_usmap("states")  +
-  geom_point(data= restaurants, 
-             aes(x=longitude, y = latitude), 
-             stroke = F) +   ##stroke to modify the  width of the border
-  scale_size_continuous(name = "Kg") +
-  ggtitle( "Restaurantes")
-
-### BUSCAR CORRELACIÓN ENTRE POBLACIÓN Y CANTIDAD DE RESTAURANTES
-
-restaurants$province[restaurants$province == "AL"] <- "Alabama"
-restaurants$province[restaurants$province == "AK"] <- "Alaska"
-restaurants$province[restaurants$province == "AB"] <- "Alberta "
-restaurants$province[restaurants$province == "AZ"] <- "Arizona "
-restaurants$province[restaurants$province == "AR"] <- "Arkansas "
-restaurants$province[restaurants$province == "BC"] <- "British Columbia"
 
 
 #### FILTRAR POR ESTADO 
@@ -92,10 +98,6 @@ AlabamaRest <- filter(restaurants,restaurants$province == "Alabama")
 
 AlaskaRest <- filter(restaurants,restaurants$province == "Alaska")
 
-# Alberta (AB)
-
-AlbertaRest <- filter(restaurants,restaurants$province == "Alberta")
-
 # Arizona (AZ)
 
 ArizonaRest <- filter(restaurants,restaurants$province == "Arizona")
@@ -103,10 +105,6 @@ ArizonaRest <- filter(restaurants,restaurants$province == "Arizona")
 # Arkansas (AR)
 
 ArkansasRest <- filter(restaurants,restaurants$province == "Arkansas")
-
-# British Columbia (BC)
-
-BritishColumbiaRest <- filter(restaurants,restaurants$province == "British Columbia")
 
 # California (CA)
 
@@ -126,7 +124,7 @@ DelawareRest <- filter(restaurants,restaurants$province == "Delaware")
 
 # Dist of Columbia (DC)
 
-DistColumbiaRest <- filter(restaurants,restaurants$province == "Dist of Columbia")
+DistColumbiaRest <- filter(restaurants,restaurants$province == "District of Columbia")
 
 # Florida (FL)
 
@@ -172,10 +170,6 @@ LouisianaRest <- filter(restaurants,restaurants$province == "Louisiana")
 
 MaineRest <- filter(restaurants,restaurants$province == "Maine")
 
-# Manitoba (MB)
-
-ManitobaRest <- filter(restaurants,restaurants$province == "Manitoba")
-
 # Maryland (MD)
 
 MarylandRest <- filter(restaurants,restaurants$province == "Maryland")
@@ -212,10 +206,6 @@ NebraskaRest <- filter(restaurants,restaurants$province == "Nebraska")
 
 NevadaRest <- filter(restaurants,restaurants$province == "Nevada")
 
-# New Brunswick (NB)
-
-NewBrunswickRest <- filter(restaurants,restaurants$province == "New Brunswick")
-
 # New Hampshire (NH)
 
 NewHampshireRest <- filter(restaurants,restaurants$province == "New Hampshire")
@@ -232,10 +222,6 @@ NewMexicoRest <- filter(restaurants,restaurants$province == "New Mexico")
 
 NewYorkRest <- filter(restaurants,restaurants$province == "New York")
 
-# NewFoundland/Labrador (NL)
-
-NewFoundlandRest <- filter(restaurants,restaurants$province == "NewFoundland/Labrador")
-
 # North Carolina (NC)
 
 NorthCarolinaRest <- filter(restaurants,restaurants$province == "North Carolina")
@@ -243,14 +229,6 @@ NorthCarolinaRest <- filter(restaurants,restaurants$province == "North Carolina"
 # North Dakota (ND)
 
 NorthDakotaRest <- filter(restaurants,restaurants$province == "North Dakota")
-
-# Northwest Territories (NT)
-
-NorthwestTerritoriesRest <- filter(restaurants,restaurants$province == "Northwest Territories")
-
-# Nova Scotia (NS)
-
-NovaScotiaRest <- filter(restaurants,restaurants$province == "Nova Scotia")
 
 # Ohio (OH)
 
@@ -260,10 +238,6 @@ OhioRest <- filter(restaurants,restaurants$province == "Ohio")
 
 OklahomaRest <- filter(restaurants,restaurants$province == "Oklahoma")
 
-# Ontario (ON)
-
-OntarioRest <- filter(restaurants,restaurants$province == "Ontario")
-
 # Oregon (OR)
 
 OregonRest <- filter(restaurants,restaurants$province == "Oregon")
@@ -272,21 +246,9 @@ OregonRest <- filter(restaurants,restaurants$province == "Oregon")
 
 PennsylvaniaRest <- filter(restaurants,restaurants$province == "Pennsylvania")
 
-# Price Edward Island (PE)
-
-PriceEdwardIslandRest <- filter(restaurants,restaurants$province == "Price Edward Island")
-
-# Quebec (QC)
-
-QuebecRest <- filter(restaurants,restaurants$province == "Quebec")
-
 # Rhode Island (RI)
 
 RhodeIslandRest <- filter(restaurants,restaurants$province == "Rhode Island")
-
-# Saskatchewan (SK)
-
-SaskatchewanRest <- filter(restaurants,restaurants$province == "Saskatchewan")
 
 # South Carolina (SC)
 
@@ -332,20 +294,66 @@ WisconsinRest <- filter(restaurants,restaurants$province == "Wisconsin")
 
 WyomingRest <- filter(restaurants,restaurants$province == "Wyoming")
 
-# Yukon (YT)
 
-YukonRest <- filter(restaurants,restaurants$province == "Yukon")
 
-restaurante_states<-c(nrow(AlabamaRest),nrow(AlaskaRest),nrow(AlbertaRest), nrow(ArizonaRest),nrow(ArkansasRest),nrow(BritishColumbiaRest), nrow(CaliforniaRest), nrow(ColoradoaRest),nrow(ConnecticutRest),nrow(DelawareRest),nrow(DistColumbiaRest),nrow(FloridaRest),nrow(GeorgiaRest),nrow(HawaiiRest),nrow(IdahoRest),nrow(IllinoisRest),nrow(IndianaRest),nrow(IowaRest),nrow(KansasRest), 
-nrow(KentuckyRest),nrow(LouisianaRest),nrow(MaineRest),nrow(ManitobaRest),nrow(MarylandRest),nrow(MassachusettsRest),nrow(MichiganRest),nrow(MinnesotaRest),
-nrow(MississippiRest),nrow(MissouriRest),nrow(MontanaRest),nrow(NebraskaRest),nrow(NevadaRest),nrow(NewBrunswickRest),nrow(NewHampshireRest),
-nrow(NewJerseyRest),nrow(NewMexicoRest),nrow(NewYorkRest),nrow(NewFoundlandRest),nrow(NorthCarolinaRest),nrow(NorthDakotaRest),
-nrow(NorthwestTerritoriesRest),nrow(NovaScotiaRest),nrow(OhioRest),nrow(OklahomaRest),nrow(OntarioRest), 
-nrow(OregonRest),nrow(PennsylvaniaRest),nrow(PriceEdwardIslandRest),nrow(QuebecRest),nrow(RhodeIslandRest),
-nrow(SaskatchewanRest),nrow(SouthCarolinaRest),nrow(SouthDakotaRest),nrow(TennesseeRest),nrow(TexasRest),nrow(UtahRest), 
-nrow(VermontRest),nrow(VirginiaRest),nrow(WashingtonRest),nrow(WestVirginiaRest),nrow(WisconsinRest),nrow(WyomingRest),nrow(YukonRest))
+nRestaurants<-c(nrow(AlabamaRest),nrow(AlaskaRest), nrow(ArizonaRest),nrow(ArkansasRest),nrow(CaliforniaRest), 
+                      nrow(ColoradoaRest),nrow(ConnecticutRest),nrow(DelawareRest),nrow(DistColumbiaRest),nrow(FloridaRest),nrow(GeorgiaRest),
+                      nrow(HawaiiRest),nrow(IdahoRest),nrow(IllinoisRest),nrow(IndianaRest),nrow(IowaRest),nrow(KansasRest), 
+                      nrow(KentuckyRest),nrow(LouisianaRest),nrow(MaineRest),nrow(MarylandRest),nrow(MassachusettsRest),
+                      nrow(MichiganRest),nrow(MinnesotaRest),nrow(MississippiRest),nrow(MissouriRest),nrow(MontanaRest),
+                      nrow(NebraskaRest),nrow(NevadaRest),nrow(NewHampshireRest),nrow(NewJerseyRest),nrow(NewMexicoRest),nrow(NewYorkRest),nrow(NorthCarolinaRest),nrow(NorthDakotaRest),
+                      nrow(OhioRest),nrow(OklahomaRest),nrow(OregonRest),nrow(PennsylvaniaRest),nrow(RhodeIslandRest),
+                      nrow(SouthCarolinaRest),nrow(SouthDakotaRest),nrow(TennesseeRest),nrow(TexasRest),nrow(UtahRest), 
+                      nrow(VermontRest),nrow(VirginiaRest),nrow(WashingtonRest),nrow(WestVirginiaRest),nrow(WisconsinRest),nrow(WyomingRest))
 
- 
 
-#### FILTRAR POR TIPO DE RESTAURANTES
 
+### CONVERTIR A FACTOR  PROVINCE, CATEGORIES 
+
+sapply(restaurants, class)
+
+restaurants$city <- factor(restaurants$city)
+restaurants$province <- factor(restaurants$province)
+restaurants$categories <- factor(restaurants$categories)
+restaurants$primaryCategories <- factor(restaurants$primaryCategories)
+
+
+################## DATOS POBLACION ######################################  
+
+population <-read.csv(file.choose(),	 header=T,	 sep=',')
+head(population)
+
+#### COMBINAR DATOS DE POBLACIÓN CON CANTIDAD DE RESTAURANTES
+population <- cbind(population,nRestaurants)
+
+###### MAPA DE TODO USA ############################
+
+mapa_usa<-c(map_data('usa'), map_data(''), mapd_data(''))
+
+mapa_usa %>%
+  ggplot() +
+  geom_polygon(aes( x= long, y = lat, group = group),
+               fill = "blue",
+               color = "white") +
+  geom_point(data= restaurants, 
+             aes(x=longitude, y = latitude), 
+             stroke = F) +   ##stroke to modify the  width of the border
+  scale_size_continuous(name = "Kg") +
+  ggtitle( "Restaurantes")
+
+
+theme_map()
+
+
+################## MAPA POR ESTADO #######################
+vignette("mapping", package = "usmap")
+
+state_map <- us_map(regions = "states")
+plot_usmap("states")  +
+  geom_point(data= restaurants, 
+             aes(x=longitude, y = latitude), 
+             stroke = F) +   ##stroke to modify the  width of the border
+  scale_size_continuous(name = "Kg") +
+  ggtitle( "Restaurantes")
+
+### BUSCAR CORRELACIÓN ENTRE POBLACIÓN Y CANTIDAD DE RESTAURANTES
