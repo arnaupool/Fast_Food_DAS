@@ -82,11 +82,66 @@ restaurants$province[restaurants$province == "WY"] <- "Wyoming"
 head(restaurants,20)
 
 
+
 ### NO HI HAN DUPLICATS
 prueba <- restaurants[!duplicated(restaurants),]
 head(prueba)
 
 ### NO HI HA NA
+
+
+###################################
+###################################
+###################################
+###################################
+###################################
+###################################
+###################################
+###################################
+###################################
+
+
+## TRANSFORMACIÓN NOMBRES
+
+table(restaurants$name)
+
+
+Emidio<-c("Emidio & Sons Italian Restaurant","Emidio Sons Italian Restaurant")
+restaurants$name[restaurants$name %in% Emidio] <- "Emidio & Sons Italian Restaurant"
+
+Dave<-c("Famous Dave's","Famous Daves")
+restaurants$name[restaurants$name %in% Dave] <- "Famous Dave's"
+
+Farlow<-c("Farlow's On The Water","Farlows on the Water")
+restaurants$name[restaurants$name %in% Farlow] <- "Farlow's On The Water"
+
+Fazoli<-c("Fazoli's","Fazolis") 
+restaurants$name[restaurants$name %in% Fazoli] <- "Fazoli's"
+
+Fireplace<-c("Fireplace Restaurant & Lounge","Fireplace Restaurant Lounge")
+restaurants$name[restaurants$name %in% Fireplace] <- "Fireplace Restaurant & Lounge"
+
+FiveGuys<-c("Five Guys","Five Guys Burgers & Fries","Five Guys Burgers Fries")
+restaurants$name[restaurants$name %in% FiveGuys] <- "Five Guys"
+
+Fox<-c("Fox's Pizza Den","Foxs Pizza Den")
+restaurants$name[restaurants$name %in% Fox] <- "Fox's Pizza Den"
+
+McAlister<- c("Mcalister's Deli","McAlister's Deli","McAlisters Deli") 
+restaurants$name[restaurants$name %in% McAlister] <- "McAlister's Deli"
+
+McDonald <- c("McDonald's", "Mcdonald's", "Mc Donald's","McDonalds","Mcdonalds", "McDonalds Family Restaurant","McDonald's - CLOSED")
+restaurants$name[restaurants$name %in% McDonald] <- "McDonald's"
+
+
+################################### en procesooooooooooooooooooooooo
+###################################
+###################################
+###################################
+###################################
+###################################
+###################################
+###################################
 
 
 #### FILTRAR POR ESTADO 
@@ -369,14 +424,26 @@ vignette("advanced-mapping", package = "usmap")
 ##state_map <- us_map(regions = "states")
 
 
-### cambiar orden columnas
+### cambiar orden columnas POPULATION para transformar
+colnames(population)
+population <- population[ , c(4,3,1,2,5)]
+head(population)
+
 population_usa<- usmap_transform(population)
 
-plot_usmap("states") +
-geom_point(data = population,
-             aes(x = long , y = lat, size = nRestaurants),
-             color = "purple", alpha = 0.5) +
-  scale_size_continuous(range = c(0, 1000),
-                        label = scales::comma)
+#### grafica mapa punto cantidad restaurante
+plot_usmap() +
+geom_point(data = population_usa,
+             aes(x = long.1 , y = lat.1, size = nRestaurants),
+             color = "purple", alpha = 0.5) + theme(legend.position = "right")
+
+
+plot_usmap() +
+  geom_point(data = population_usa,
+             aes(x = long.1 , y = lat.1, size = nRestaurants),
+             color = "purple", alpha = 0.5) + theme(legend.position = "right")
+scale_fill_continuous(
+  low = "white", high = "red", name = "Nº de restaurantes") 
+
 
 ### BUSCAR CORRELACIÓN ENTRE POBLACIÓN Y CANTIDAD DE RESTAURANTES
