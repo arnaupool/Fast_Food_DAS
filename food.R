@@ -103,8 +103,136 @@ head(prueba)
 
 ## TRANSFORMACIÓN NOMBRES
 
-table(restaurants$name)
+nombresRest<-data.frame(table(restaurants$name))
 
+BurguerShack<-c("Al's Burger Shack","Al's Burger Shack-Southern Village")
+restaurants$name[restaurants$name %in% BurguerShack] <- "Al's Burger Shack"
+
+Albee<-c("Albee's Ny Gyros","Albee's NY Gyros")
+restaurants$name[restaurants$name %in% Albee] <- "Albee's NY Gyros"
+
+Alfonso<-c("Alfonso's Pizza Italian Restaurant","Alfonsos Pizza")
+restaurants$name[restaurants$name %in% Alfonso] <- "Alfonso's Pizza"
+
+#BORRAR Arby's cerrados o por abrir
+restaurants<-restaurants[!grepl("Arby's - Closed", restaurants$name),]
+restaurants<-restaurants[!grepl("Arby's - Coming Soon", restaurants$name),]
+restaurants<-restaurants[!grepl("Arbys CLOSED", restaurants$name),]
+
+Arby<-c("Arby's","Arbys")
+restaurants$name[restaurants$name %in% Arby] <- "Arby's"
+
+Auntie<-c("Auntie Anne's","Auntie Anne's Soft Pretzels")
+restaurants$name[restaurants$name %in% Auntie] <- "Auntie Anne's Soft Pretzels"
+
+AW<-c("AW","AW All-American Food","AW Restaurant","Aw Restaurants","AW Restaurants","AWRestaurants","A W Restaurant")
+restaurants$name[restaurants$name %in% AW] <- "A&W All-American Food"
+
+BackYard<-c("Back Yard Burgers","Backyard Burgers")
+restaurants$name[restaurants$name %in% BackYard] <- "Back Yard Burgers"
+
+BadDaddy<-c("Bad Daddy's Burger Bar","Bad Daddys Burger Bar")
+restaurants$name[restaurants$name %in% BadDaddy] <- "Bad Daddy's Burger Bar"
+
+BR<-c("Baskin-Robbins","Baskin Robbins","BaskinRobbins")
+restaurants$name[restaurants$name %in% BR] <- "Baskin Robbins"
+
+BigBilly<-c("Big Billy's Burger Joint","Big Billys Burger Joint")
+restaurants$name[restaurants$name %in% BigBilly] <- "Big Billy's"
+
+BigBoy<-c("Big Boy","Big Boy's Burgers and Shakes","Big Boy's Construction, Inc.","Big Boy Burger/Express Market","Big Boys","Big Boys Construction")
+restaurants$name[restaurants$name %in% BigBoy] <- "Big Boy"
+
+BlakeL<-c("Blake's Lotaburger","Blakes Lotaburger")
+restaurants$name[restaurants$name %in% BlakeL] <- "Blake's Lotaburger"
+
+Blimpie<-c("Blimpie","BLIMPIE","Blimpie Subs & Salads")
+restaurants$name[restaurants$name %in% Blimpie] <- "Blimpie"
+
+BobBurger<-c("Bob's Burger Brew","Bob's Burgers Brew")
+restaurants$name[restaurants$name %in% BobBurger] <- "Bob's Burgers Brew"
+
+BobEvans<-c("Bob Evans","Bob Evans Restaurant")
+restaurants$name[restaurants$name %in% BobEvans] <- "Bob Evans"
+
+Bojangles<-c("Bojangles","Bojangles' Famous Chicken 'n Biscuits","Bojangles Famous Chicken n Biscuits")
+restaurants$name[restaurants$name %in% Bojangles] <- "Bojangles"
+
+Braum<-c("Braum's Ice Cream and Dairy Store","Braum's Ice Cream Burger Restaurant")
+restaurants$name[restaurants$name %in% Braum] <- "Braum's"
+
+##BORRAR Burguer Kings cerrados
+restaurants<-restaurants[!grepl("Burger King - Closed", restaurants$name),]
+restaurants<-restaurants[!grepl("Burger King - Temporarily Closed", restaurants$name),]
+
+BurgerKing<-c("Burger King","Burger KingÂ®","Burger KingPopeyes")
+restaurants$name[restaurants$name %in% BurgerKing] <- "Burger King"
+
+BurgerRanch<-c("Burger Ranch","Burger Ranch Of Selah")
+restaurants$name[restaurants$name %in% BurgerRanch] <- "Burger Ranch"
+
+BurgerFi<-c("Burgerfi","BurgerFi")
+restaurants$name[restaurants$name %in% BurgerFi] <- "BurgerFi"
+
+Burrito<-c("Burrito Amigos","Burrtio Amigos")
+restaurants$name[restaurants$name %in% Burrito] <- "Burrito Amigos"
+
+CJ<-c("C & J Drive In","C J Drive In")
+restaurants$name[restaurants$name %in% CJ] <- "C & J Drive In"
+
+CafeY<-c("Cafe Yumm","Cafe Yumm - River Bend")
+restaurants$name[restaurants$name %in% CafeY] <- "Cafe Yumm"
+
+Captain<-c("Captain D'S","Captain D's Seafood","Captain D's Seafood Kitchen","Captain Ds")
+restaurants$name[restaurants$name %in% Captain] <- "Captain D'S"
+
+Carl<-c("Carl's Jr","Carl's Jr.","Carls Jr","Carls Jr Green Burrito")
+restaurants$name[restaurants$name %in% Carl] <- "Carl's Jr"
+
+Chanellos<-c("Chanelloâ€™s Pizza","Chanellos Pizza")
+restaurants$name[restaurants$name %in% Chanellos] <- "Chanellos Pizza"
+
+Char<-c("Char-Grill","Char Grill 1")
+restaurants$name[restaurants$name %in% Char] <- "Char Grill"
+
+Charleys<-c("Charley's Grill & Spirits","Charley's Grill Spirits")
+restaurants$name[restaurants$name %in% Charleys] <- "Charley's Grill & Spirits"
+
+Charley<-c("Charley's Grilled Subs","Charleys Grilled Subs")
+restaurants$name[restaurants$name %in% Charley] <- "Charley's Grilled Subs"
+
+Checker<-c("Checker's Drive In Restaurant","Checkers","Checkers Drive-In Rstrnt Inc")
+restaurants$name[restaurants$name %in% Checker] <- "Checker's"
+
+Chick<-c("Chick-fil-A","Chick-Fil-A","Chick-Fil-A Of Randolph Mall","ChickfilA")
+restaurants$name[restaurants$name %in% Chick] <- "Chick-Fil-A"
+
+ChickenE<-c("Chicken Express","Chicken Express of Conway")
+restaurants$name[restaurants$name %in% ChickenE] <- "Chicken Express"
+
+ChinaJ<-c("China Jade","China Jade Chinese Take Out")
+restaurants$name[restaurants$name %in% ChinaJ] <- "China Jade"
+
+ChinaStar<-c("China Star","China Star Chinese Restaurant")
+restaurants$name[restaurants$name %in% ChinaStar] <- "China Star"
+
+ChinaWok<-c("China Wok","China Wok Chinese Takeout","China Wok Express")
+restaurants$name[restaurants$name %in% ChinaWok] <- "China Wok"
+
+Chipotle<-c("Chipotle","Chipotle Mexican Grill")
+restaurants$name[restaurants$name %in% Chipotle] <- "Chipotle"
+
+Church<-c("Church's Chicken","Church's Chicken Of Birmingham","Churchs Chicken")
+restaurants$name[restaurants$name %in% Church] <- "Church's Chicken"
+
+Cisco<-c("Cisco's Taqueria","Ciscos Taqueria")
+restaurants$name[restaurants$name %in% Cisco] <- "Cisco's Taqueria"
+
+CookO<-c("Cook-Out","Cook Out","CookOut")
+restaurants$name[restaurants$name %in% CookO] <- "Cook-Out"
+
+Culver<-c("Culver's","CULVER'S","Culvers")
+restaurants$name[restaurants$name %in% Culver] <- "Culver's"
 
 Emidio<-c("Emidio & Sons Italian Restaurant","Emidio Sons Italian Restaurant")
 restaurants$name[restaurants$name %in% Emidio] <- "Emidio & Sons Italian Restaurant"
@@ -127,11 +255,21 @@ restaurants$name[restaurants$name %in% FiveGuys] <- "Five Guys"
 Fox<-c("Fox's Pizza Den","Foxs Pizza Den")
 restaurants$name[restaurants$name %in% Fox] <- "Fox's Pizza Den"
 
+Freddy<-c("Freddy's Frozen Custard & Steakburgers","Freddy's Frozen Custard Steakburgers","Freddys Frozen Custard Steakburgers") 
+restaurants$name[restaurants$name %in% Freddy] <- "Freddy's Frozen Custard & Steakburgers"
+
+Frisch<-c("Frisch's Big Boy","Frisch's Big Boy Restaurant","90 Frisch's Big Boy Restaurant","1 Frisch's Big Boy Restaurant","40 Frisch's Big Boy Restaurant") 
+restaurants$name[restaurants$name %in% Frisch] <- "Frisch's Big Boy"
+
 McAlister<- c("Mcalister's Deli","McAlister's Deli","McAlisters Deli") 
 restaurants$name[restaurants$name %in% McAlister] <- "McAlister's Deli"
 
-McDonald <- c("McDonald's", "Mcdonald's", "Mc Donald's","McDonalds","Mcdonalds", "McDonalds Family Restaurant","McDonald's - CLOSED")
+##BORRAR Mcdonalds cerrados
+restaurants<-restaurants[!grepl("McDonald's - CLOSED", restaurants$name),]
+
+McDonald <- c("McDonald's", "Mcdonald's", "Mc Donald's","McDonalds","Mcdonalds", "McDonalds Family Restaurant")
 restaurants$name[restaurants$name %in% McDonald] <- "McDonald's"
+
 
 
 ################################### en procesooooooooooooooooooooooo
