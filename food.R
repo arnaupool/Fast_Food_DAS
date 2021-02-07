@@ -102,7 +102,6 @@ head(prueba)
 
 
 ## TRANSFORMACIÓN NOMBRES
-
 nombresRest<-data.frame(table(restaurants$name))
 
 BurguerShack<-c("Al's Burger Shack","Al's Burger Shack-Southern Village")
@@ -326,6 +325,39 @@ restaurants$name[restaurants$name %in% Jerry] <- "Jerry's Subs & Pizza"
 Jersey<-c("Jersey Mike's Subs","Jersey Mikes Subs")
 restaurants$name[restaurants$name %in% Jersey] <- "Jersey Mike's Subs"
 
+Jimmy<-c("Jimmy John's","Jimmy John's Boyton Beach","Jimmy Johns")
+restaurants$name[restaurants$name %in% Jimmy] <- "Jimmy John's"
+
+##BORRAR KFC cerrados
+restaurants<-restaurants[!grepl("KFC - Closed", restaurants$name),]
+
+KFC<-c("Kentucky Fried Chicken","Kfc","KFC","KFC - Kentucky Fried Chicken","KFC AW","KFC Kentucky Fried Chicken")
+restaurants$name[restaurants$name %in% KFC] <- "KFC"
+
+Killer<-c("Killer Burger","Killer Burgers")
+restaurants$name[restaurants$name %in% Killer] <- "Killer Burger"
+
+##BORRAR Krystal cerrados
+restaurants<-restaurants[!grepl("Krystal - Closed", restaurants$name),]
+
+Krystal<-c("Krystal","Krystal Burgers")
+restaurants$name[restaurants$name %in% Krystal] <- "Krystal"
+
+LL<-c("L & L Hawaiian Barbecue","L L Hawaiian Barbecue","L L Hawaiian Barbeque","LL Hawaiian Barbecue")
+restaurants$name[restaurants$name %in% LL] <- "L & L Hawaiian Barbecue"
+
+Long<-c("Long John Silver's","Long John Silvers")
+restaurants$name[restaurants$name %in% Long] <- "Long John Silver's"
+
+Mai<-c("Mai-Tai Restaurant","Mai Tai Restaurant")
+restaurants$name[restaurants$name %in% Mai] <- "Mai-Tai Restaurant"
+
+Mambo<-c("Mambo Grill and Tapas","Mambo Grill Tapas")
+restaurants$name[restaurants$name %in% Mambo] <- "Mambo Grill & Tapas"
+
+Mary<-c("Mary's Pizza Shack","Marys Pizza Shack")
+restaurants$name[restaurants$name %in% Mary] <- "Mary's Pizza Shack"
+
 McAlister<- c("Mcalister's Deli","McAlister's Deli","McAlisters Deli") 
 restaurants$name[restaurants$name %in% McAlister] <- "McAlister's Deli"
 
@@ -335,6 +367,62 @@ restaurants<-restaurants[!grepl("McDonald's - CLOSED", restaurants$name),]
 McDonald <- c("McDonald's", "Mcdonald's", "Mc Donald's","McDonalds","Mcdonalds", "McDonalds Family Restaurant")
 restaurants$name[restaurants$name %in% McDonald] <- "McDonald's"
 
+Melt<-c("Melt Bar & Grilled","Melt Bar and Grilled")
+restaurants$name[restaurants$name %in% Melt] <- "Melt Bar & Grilled"
+
+Moe<-c("Moe's Southwest Grill","Moes Southwest Grill")
+restaurants$name[restaurants$name %in% Moe] <- "Moe's Southwest Grill"
+
+Mr<-c("Mr Gyro's Wallingford","Mr Gyros","Mr Gyros Burgers")
+restaurants$name[restaurants$name %in% Mr] <- "Mr Gyro's"
+
+Nathan<-c("Nathan's Famous Hot Dogs","Nathans Famous")
+
+Nichola<-c("Nicholas' Restaurant","Nicholas Restaurant")
+
+Panda<-c("Panda Express","Panda Express - Inside Vons + Inside Vons +")
+
+Papa<-c("Papa John's Pizza","Papa Johns Pizza")
+
+c("PDQ","PDQ Restaurant")
+
+c("Pei Wei","Pei Wei Asian Diner") 
+
+c("Peking Chinese Restaurant","Peking Chinese Restaurants")
+
+c("Pietro's Pizza & Gallery of Games","Pietro's Pizza Gallery of Games","Pietro's Pizza Pirate Adventure","Pietros Pizza")
+
+c("Pizza Hut","Pizza Hut Express")
+
+c("Popeye's Chicken & Biscuits","Popeye's Louisiana Kitchen","Popeyes","Popeyes Chicken and Biscuits","Popeyes Chicken Biscuits","Popeyes Louisiana Kitchen")
+
+c(Pot Belly Sandwich Works,Potbelly Sandwich Works)
+
+c(Puerto Vallarta,Puerto Vallarta Restaurant)
+
+c(Qdoba Mexican Eats,QDOBA Mexican Eats,Qdoba Mexican Grill)
+
+c(Quiznos,Quiznos Closed,Quiznos Sub)
+
+
+Raising Cane's Chicken Fingers
+3
+1014
+Raising Canes Chicken Fingers
+
+Rally's
+17
+1016
+Rally's Hamburgers
+1
+1017
+Rally Pizza
+1
+1018
+Rallys
+9
+1019
+Rallys Hamburgers
 
 ################################### en procesooooooooooooooooooooooo
 ###################################
