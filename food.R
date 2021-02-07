@@ -234,6 +234,34 @@ restaurants$name[restaurants$name %in% CookO] <- "Cook-Out"
 Culver<-c("Culver's","CULVER'S","Culvers")
 restaurants$name[restaurants$name %in% Culver] <- "Culver's"
 
+##BORRAR Dairy Queen cerrados
+restaurants<-restaurants[!grepl("Dairy Queen - Closed", restaurants$name),]
+
+Dairy<-c("Dairy queen","Dairy Queen","Dairy Queen-Russo","Dairy Queen (Treat)","Dairy Queen (Treat) - Seasonally Closed","Dairy Queen Grill & Chill",
+"Dairy Queen Grill and Chill","Dairy Queen Grill Chill","Dairy Queen Grill Chill - Temporarily Closed","Dairy Queen Orange Julius")
+restaurants$name[restaurants$name %in% Dairy] <- "Dairy Queen"
+
+Dominic<-c("Dominic's of New York","Dominics of New York")
+restaurants$name[restaurants$name %in% Dominic] <- "Dominic's of New York"
+
+Domino<-c("Domino's Pizza","Dominos Pizza")
+restaurants$name[restaurants$name %in% Domino] <- "Domino's Pizza"
+
+Dq<-c("DQ Grill Chill","DQ Grill Chill Orange Julius")
+restaurants$name[restaurants$name %in% Dq] <- "DQ Grill Chill"
+
+Dunkin<-c("Dunkin'","Dunkin' Donuts","Dunkin Donuts","Dunkin Donuts/baskinrobbins")
+restaurants$name[restaurants$name %in% Dunkin] <- "Dunkin' Donuts"
+
+##BORRAR Einstein Bros cerrados
+restaurants<-restaurants[!grepl("Einstein Bros. Bagels - Closed", restaurants$name),]
+
+Einstein<-c("Einstein Bros Bagels","Einstein Bros. Bagels")
+restaurants$name[restaurants$name %in% Einstein] <- "Einstein Bros Bagels"
+
+Tapatio<-c("El Tapatio","El Tapatio Restaurante")
+restaurants$name[restaurants$name %in% Tapatio] <- "El Tapatio"
+
 Emidio<-c("Emidio & Sons Italian Restaurant","Emidio Sons Italian Restaurant")
 restaurants$name[restaurants$name %in% Emidio] <- "Emidio & Sons Italian Restaurant"
 
@@ -260,6 +288,18 @@ restaurants$name[restaurants$name %in% Freddy] <- "Freddy's Frozen Custard & Ste
 
 Frisch<-c("Frisch's Big Boy","Frisch's Big Boy Restaurant","90 Frisch's Big Boy Restaurant","1 Frisch's Big Boy Restaurant","40 Frisch's Big Boy Restaurant") 
 restaurants$name[restaurants$name %in% Frisch] <- "Frisch's Big Boy"
+
+Full<-c("Full Moon Bar-B-Que","Full Moon Bar B Que")
+restaurants$name[restaurants$name %in% Full] <- "Full Moon Bar-B-Que"
+
+George<-c("George's Gyros Spot","George's Gyros Spot 2")
+restaurants$name[restaurants$name %in% George] <- "George's Gyros Spot"
+
+Gold<-c("Gold Star Chili","Gold Star Hamburgers")
+restaurants$name[restaurants$name %in% Gold] <- "Gold Star"
+
+Golden<-c("Golden Palace","Golden Palace Restaurant")
+restaurants$name[restaurants$name %in% Golden] <- "Golden Palace"
 
 McAlister<- c("Mcalister's Deli","McAlister's Deli","McAlisters Deli") 
 restaurants$name[restaurants$name %in% McAlister] <- "McAlister's Deli"
