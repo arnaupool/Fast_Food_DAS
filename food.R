@@ -301,6 +301,31 @@ restaurants$name[restaurants$name %in% Gold] <- "Gold Star"
 Golden<-c("Golden Palace","Golden Palace Restaurant")
 restaurants$name[restaurants$name %in% Golden] <- "Golden Palace"
 
+Hardee<-c("Hardee's","Hardee's - Loris:","Hardee's Restaurant","Hardee's Restaurants","Hardee's/red Burrito",
+"Hardee's/Red Burrito","Hardees","Hardees Red Burrito")
+restaurants$name[restaurants$name %in% Hardee] <- "Hardee's"
+
+Hometown<-c("Hometown Buffet","HomeTown Buffet")
+restaurants$name[restaurants$name %in% Hometown] <- "HomeTown Buffet"
+
+HotDog<-c("Hot Dog on a Stick","Hot Dog On A Stick")
+restaurants$name[restaurants$name %in% HotDog] <- "Hot Dog On A Stick"
+
+InOut<-c("In-N-Out Burger","IN-N-OUT WINGS","InNOut Burger")
+restaurants$name[restaurants$name %in% InOut] <- "In-N-Out Burger"
+
+Jack<-c("Jack's","Jack's Family Restaurants","Jack's Hamburgers","Jacks")
+restaurants$name[restaurants$name %in% Jack] <- "Jack's"
+
+Jason<-c("Jason's Deli","Jasons Deli")
+restaurants$name[restaurants$name %in% Jason] <- "Jason's Deli"
+
+Jerry<-c("Jerry's Subs & Pizza","Jerry's Subs and Pizza")
+restaurants$name[restaurants$name %in% Jerry] <- "Jerry's Subs & Pizza"
+
+Jersey<-c("Jersey Mike's Subs","Jersey Mikes Subs")
+restaurants$name[restaurants$name %in% Jersey] <- "Jersey Mike's Subs"
+
 McAlister<- c("Mcalister's Deli","McAlister's Deli","McAlisters Deli") 
 restaurants$name[restaurants$name %in% McAlister] <- "McAlister's Deli"
 
@@ -309,7 +334,6 @@ restaurants<-restaurants[!grepl("McDonald's - CLOSED", restaurants$name),]
 
 McDonald <- c("McDonald's", "Mcdonald's", "Mc Donald's","McDonalds","Mcdonalds", "McDonalds Family Restaurant")
 restaurants$name[restaurants$name %in% McDonald] <- "McDonald's"
-
 
 
 ################################### en procesooooooooooooooooooooooo
