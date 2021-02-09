@@ -1,11 +1,12 @@
 install.packages("dplyr", dependencies=TRUE)
+install.packages("plyr", dependencies=TRUE)
 install.packages("ggplot2", dependencies=TRUE)
 install.packages("maps", dependencies=TRUE)
 install.packages("usmap", dependencies=TRUE)
 install.packages("mapproj", dependencies=TRUE)
 install.package("devtools", dependencies=TRUE)
 
-.libs <- c("dplyr","ggplot2","maps", "mapproj","usmap","devtools")
+.libs <- c("dplyr","plyr","ggplot2","maps", "mapproj","usmap","devtools")
 sapply(.libs,require, character.only=TRUE)
 
 
@@ -14,6 +15,10 @@ sapply(.libs,require, character.only=TRUE)
 restaurants <-read.csv(file.choose(),	 header=T,	 sep=',')
 head(restaurants)
 colnames(restaurants)
+# "id"                "dateAdded"         "dateUpdated"       "address"          
+# "categories"        "primaryCategories" "city"              "country" 
+# "keys"              "latitude"          "longitude"         "name"             
+# "postalCode"        "province"          "sourceURLs"        "websites"    
 
 ### quitando datos innecesarios
 ## id, dateAdded, dateUpdated, keys, sourceURLs, websites, country
@@ -26,6 +31,7 @@ colnames(restaurants)
 
 
 #### REFACTORIZACIÓN DE DATOS para juntar con los datos de población
+
 
 restaurants$province[restaurants$province == "AL"] <- "Alabama"
 restaurants$province[restaurants$province == "AK"] <- "Alaska"
@@ -90,7 +96,9 @@ head(prueba)
 ### NO HI HA NA
 
 
+
 ## TRANSFORMACIÓN NOMBRES
+
 nombresRest<-data.frame(table(restaurants$name))
 
 Abby<-c("Abby's Legendary Pizza","Abbys Restaurant Bar")
@@ -323,7 +331,8 @@ restaurants$name[restaurants$name %in% Jimmy] <- "Jimmy John's"
 ##BORRAR KFC cerrados
 restaurants<-restaurants[!grepl("KFC - Closed", restaurants$name),]
 
-KFC<-c("Kentucky Fried Chicken","Kfc","KFC","KFC - Kentucky Fried Chicken","KFC AW","KFC Kentucky Fried Chicken")
+KFC<-c("Kentucky Fried Chicken","Kfc","KFC","KFC - Kentucky Fried Chicken",
+       "KFC AW","KFC Kentucky Fried Chicken")
 restaurants$name[restaurants$name %in% KFC] <- "KFC"
 
 Killer<-c("Killer Burger","Killer Burgers")
@@ -353,10 +362,13 @@ restaurants$name[restaurants$name %in% Mary] <- "Mary's Pizza Shack"
 McAlister<- c("Mcalister's Deli","McAlister's Deli","McAlisters Deli") 
 restaurants$name[restaurants$name %in% McAlister] <- "McAlister's Deli"
 
+
+### 80 ###
 ##BORRAR Mcdonalds cerrados
 restaurants<-restaurants[!grepl("McDonald's - CLOSED", restaurants$name),]
 
-McDonald <- c("McDonald's", "Mcdonald's", "Mc Donald's","McDonalds","Mcdonalds", "McDonalds Family Restaurant")
+McDonald <- c("McDonald's", "Mcdonald's", "Mc Donald's","McDonalds",
+              "Mcdonalds","McDonalds Family Restaurant")
 restaurants$name[restaurants$name %in% McDonald] <- "McDonald's"
 
 Melt<-c("Melt Bar & Grilled","Melt Bar and Grilled")
@@ -508,12 +520,13 @@ restaurants<-restaurants[!grepl("Whataburger - Closed", restaurants$name),]
 Whataburger<-c("Whataburger","Whataburger of East Texas","Whataburger Of East Texas Corporate")
 restaurants$name[restaurants$name %in% Whataburger] <- "Whataburger"
 
-Wingstop<-("Wingstop","Wingstop Fish Chicken","Wingstop Restaurant")
+Wingstop<-c("Wingstop","Wingstop Fish Chicken","Wingstop Restaurant")
 restaurants$name[restaurants$name %in% Wingstop] <- "Wingstop"
 
 
 ##BORRAR Starbucks -- solo 2 existencias para una cadena conocida de cafes(no fast food)
 restaurants<-restaurants[!grepl("Starbucks", restaurants$name),]
+
 
 
 #### FILTRAR POR ESTADO 
@@ -735,15 +748,15 @@ nRestaurants<-c(nrow(AlabamaRest),nrow(AlaskaRest), nrow(ArizonaRest),nrow(Arkan
 
 
 
-### CONVERTIR A FACTOR  PROVINCE, CATEGORIES 
-
-sapply(restaurants, class)
-
-restaurants$city <- factor(restaurants$city)
-restaurants$province <- factor(restaurants$province)
-restaurants$categories <- factor(restaurants$categories)
-restaurants$primaryCategories <- factor(restaurants$primaryCategories)
-
+# ### CONVERTIR A FACTOR  PROVINCE, CATEGORIES 
+# 
+# sapply(restaurants, class)
+# 
+# restaurants$city <- factor(restaurants$city)
+# restaurants$province <- factor(restaurants$province)
+# restaurants$categories <- factor(restaurants$categories)
+# restaurants$primaryCategories <- factor(restaurants$primaryCategories)
+# 
 
 ################## DATOS POBLACION ######################################  
 
@@ -768,6 +781,90 @@ population$nRestaurants <- as.numeric(population$nRestaurants)
 ## CORELACIÓN ENTRE CANTIDAD DE POBLACIÓN Y Nº RESTAURANTES
 cor(population$POPESTIMATE2019, population$nRestaurants)
 # 0.648239
+
+
+
+################## DATOS PROBLEMAS DE SALUD ###################################### 
+
+### fichero 2019 annual
+salud<-read.csv(file.choose(),	 header=T,	 sep=',')
+
+colnames(obesidad)
+# [1] "Edition"      "Report.Type"  "Measure.Name" "State.Name"   "Rank"         "Value"       
+# [7] "Score"        "Lower.CI"     "Upper.CI"     "Source"       "Source.Year" 
+
+# probando<-data.frame(table(obesidad$Measure.Name))
+
+Obesidad<-salud[salud$Measure.Name == "Obesity",]
+
+Colesterol<-salud[salud$Measure.Name == "High Cholesterol",]
+
+Problemas_Cardiovasculares <-salud[salud$Measure.Name == "Cardiovascular Diseases",]
+
+Diabetes <-salud[salud$Measure.Name == "Diabetes",]
+
+Presion_Alta <-salud[salud$Measure.Name == "High Blood Pressure",]
+
+Cancer<-salud[salud$Measure.Name == "Cancer",]
+
+
+
+## Borrar fila de datos generales USA
+
+Obesidad <- Obesidad[!grepl("United States", Obesidad$State.Name),]
+
+Colesterol <- Colesterol[!grepl("United States", Colesterol$State.Name),]
+
+Problemas_Cardiovasculares <- Problemas_Cardiovasculares[!grepl("United States", Problemas_Cardiovasculares$State.Name),]
+
+Diabetes <- Diabetes[!grepl("United States", Diabetes$State.Name),]
+
+Presion_Alta <- Presion_Alta[!grepl("United States", Presion_Alta$State.Name),]
+
+Cancer <- Cancer[!grepl("United States", Cancer$State.Name),]
+
+
+### Ordenar alfabeticamente
+
+Obesidad <-arrange(Obesidad,State.Name)
+  
+Colesterol <-arrange(Colesterol,State.Name)
+
+Problemas_Cardiovasculares <-arrange(Problemas_Cardiovasculares,State.Name)
+
+Presion_Alta <- arrange(Presion_Alta,State.Name)
+
+Diabetes<-arrange(Diabetes,State.Name)
+
+Cancer<-arrange(Cancer,State.Name)
+
+
+
+## Borrar columnas innecesarias// quedarse solo con la de valor y cambio de nombre
+
+Obesidad <- subset(Obesidad,select = 6)
+colnames(Obesidad) <- "Valor_Obesidad"
+
+Colesterol <- subset(Colesterol,select = 6) 
+colnames(Colesterol) <- "Valor_Colesterol"
+
+Problemas_Cardiovasculares <- subset(Problemas_Cardiovasculares,select = 6)
+colnames(Problemas_Cardiovasculares) <- "Valor_Problemas_Cardiovasculares"
+
+Presion_Alta <- subset(Presion_Alta,select = 6)
+colnames(Presion_Alta) <- "Valor_Presion_Alta"
+
+Diabetes <- subset(Diabetes,select = 6)
+colnames(Diabetes) <- "Valor_Diabetes"
+
+Cancer <- subset(Cancer,select = 6)
+colnames(Cancer) <- "Valor_Cancer"
+
+
+
+population <- cbind(population,Obesidad,Colesterol,Problemas_Cardiovasculares,
+                    Presion_Alta,Diabetes,Cancer)
+
 
 ###### MAPA DE TODO USA ############################
 
